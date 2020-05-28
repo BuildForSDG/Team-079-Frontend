@@ -23,8 +23,7 @@ const Faq = (props) => {
 
       <animated.div className="faq-answer" style={{ ...animProps }}>
         <span style={{ position: "relative" }}>
-          {resizeListener}
-          {answer}
+          {resizeListener} {answer}
         </span>
       </animated.div>
     </StyledFaq>
