@@ -20,6 +20,9 @@ const ReportModal = () => {
 
   const [modal, setModal] = useState(false);
 
+  const [submitted, setSubmitted] = useState(false);
+  const [trackingID, setTrackingID] = useState(null);
+
   const abuja = { lat: 9.0764785, lng: 7.398574 };
 
   const [address, setAddress] = useState("");
@@ -43,6 +46,11 @@ const ReportModal = () => {
 
   const toggle = () => {
     setModal((modalState) => !modalState);
+    setSubmitted((state) => {
+      if (state) {
+        setSubmitted(false);
+      }
+    });
   };
 
   const [incidentTypes, setIncidentTypes] = useState([]);
@@ -57,12 +65,6 @@ const ReportModal = () => {
         known_name: report.location,
         location_lat: coordinates.lat,
         location_lng: coordinates.lng
-        // viewport_ne_lat: 40.7137011802915,
-        // viewport_ne_lng: -74.00674761970849,
-        // viewport_sw_lat: 40.7110032197085,
-        // viewport_sw_lng: -74.0094455802915,
-        // rating: 5,
-        // vicinity: "Greenbrier Parkway, United States of America"
       },
       reported_by: {
         id: 3
@@ -76,37 +78,22 @@ const ReportModal = () => {
     const config = {
       headers: {
         "Content-Type": "application/json"
-        // "Cache-Control": "no-cache"
       }
     };
 
     try {
       const res = await axios.post(`${baseURL}api/v1/incident/report/`, obj, config);
-      // eslint-disable-next-line no-unused-vars
-      const topResponders = await axios.get(`${baseURL}api/v1/responder/find/?incident=${res.data.id}`);
-      // const topResponders = await axios.get(`${baseURL}api/v1/responder/find/?incident=19`);
-      // eslint-disable-next-line no-console
-      // console.log(topResponders);
+      setTrackingID(res.data.id);
+      setSubmitted(true);
     } catch (error) {
-      // console.error(error);
+      // eslint-disable-next-line no-console
+      console.error(error);
     }
-
-    // fetch(`${baseURL}api/v1/incident/report`, {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     // "Cache-Control": "no-cache"
-    //   },
-    //   body
-    // // eslint-disable-next-line
-    // }).then((res) => res.json()).then((data) => console.log(data)).catch((error) => console.log(error))
   };
 
   useEffect(() => {
     const getIncidentTypes = async () => {
-      const res = await axios(`${baseURL}api/v1/incident/types`);
-      // eslint-disable-next-line no-console
-      // console.log("AXIOS: ", res.data);
+      const res = await axios(`${baseURL}api/v1/incident/types/`);
       setIncidentTypes(res.data.results);
       setReport((state) => ({
         ...state,
@@ -129,7 +116,7 @@ const ReportModal = () => {
       <Link to="incident/report" onClick={toggle}>Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
       {/* <Button color="primary" onClick={toggle}>Report Accident</Button> */}
       <Modal toggle={toggle} isOpen={modal}>
-        <ModalHeader toggle={toggle}>Report Accident</ModalHeader>
+        {!submitted ? (<><ModalHeader toggle={toggle}>Report Accident</ModalHeader>
         <ModalBody>
           <Form onSubmit={handleSubmit}>
             <FormGroup>
@@ -198,12 +185,24 @@ const ReportModal = () => {
                 {incidentTypes.map((incident) => <option key={incident.id} value={incident.id}>{incident.label}</option>) }
               </Input>
               <br />
-              <Button block color="dark">
+              <Button block color="primary">
                 Report
               </Button>
             </FormGroup>
           </Form>
-        </ModalBody>
+        </ModalBody></>) : (<>
+          <ModalHeader toggle={toggle}>Report Submitted</ModalHeader>
+          <ModalBody style={{ textAlign: "center" }}>
+        <h6>Please track this incident with this ID: {trackingID}</h6>
+            <br/>
+          <Button onClick={() => {
+            setModal((modalState) => !modalState);
+            // setSubmitted(false);
+          }} color="primary">
+                Close
+              </Button>
+          </ModalBody>
+        </>)}
       </Modal>
     </div>
   );
