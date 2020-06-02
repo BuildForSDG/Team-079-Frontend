@@ -4,6 +4,8 @@ import { useSpring, config } from "react-spring";
 import { Link } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import ReportModal from "../ReportModal";
+// import "./App.scss";
+import "../../App.scss";
 
 const Description = () => {
   const homeAnimation = useSpring({
@@ -19,7 +21,6 @@ const Description = () => {
           <h1>Helow</h1>
           <p>In times when you just had or wittness an accident, quick response is needed by emergency services to saves lives. Report an accident using, Helow and emergency services will be with the victims within minutes.</p>
           <div id="links">
-            {/* <Link to="incident/report">Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link> */}
             <ReportModal />
             <Link to="incident/views">View all Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
           </div>

@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 /* eslint-disable max-len */
 import React, { useState, useEffect } from "react";
 import {
@@ -14,6 +15,7 @@ import axios from "axios";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import MapLocation from "./MapLocation";
+// import "./App.scss";
 
 const ReportModal = () => {
   const baseURL = "https://helow.herokuapp.com/";
@@ -112,8 +114,8 @@ const ReportModal = () => {
   };
 
   return (
-    <div>
-      <Link to="incident/report" onClick={toggle}>Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
+    <>
+      <Link onClick={toggle}>Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
       {/* <Button color="primary" onClick={toggle}>Report Accident</Button> */}
       <Modal toggle={toggle} isOpen={modal}>
         {!submitted ? (<><ModalHeader toggle={toggle}>Report Accident</ModalHeader>
@@ -204,7 +206,7 @@ const ReportModal = () => {
           </ModalBody>
         </>)}
       </Modal>
-    </div>
+    </>
   );
 };
 
