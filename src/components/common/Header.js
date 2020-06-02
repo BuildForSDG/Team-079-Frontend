@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import Navbar from "../navbar/Navbar";
 
 
@@ -15,8 +15,8 @@ class Header extends Component {
 
     return (
       <>
-        <Navbar 
-          navbarState={this.state.navbarOpen} 
+        <Navbar
+          navbarState={this.state.navbarOpen}
           handleNavbar={this.handleNavbar}
         />
       </>
