@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link, animateScroll as scroll } from "react-scroll";
 
@@ -9,25 +9,47 @@ import BurgerMenu from "./BurgerMenu";
 import CollapseMenu from "./CollapseMenu";
 
 const Navbar = (props) => {
-  window.addEventListener("DOMContentLoaded", (event) => {
+  const history = useHistory();
+
+  const scrollToTop = () => {
+    scroll.scrollToTop();
+  };
+
+  window.addEventListener("DOMContentLoaded", () => {
+    scrollToTop();
     const navLink = document.getElementsByTagName("a");
     const arrLinks = Array.from(navLink);
+    const removeClass = () => {
+      // eslint-disable-next-line
+      arrLinks.map((element) => {
+        element.classList.remove("active")
+        element.removeAttribute("style")
+      });
+    }
+    removeClass();
     arrLinks.forEach((link) => {
       link.addEventListener("click", ({ target }) => {
+        removeClass()
         const { name } = target;
         const home = document.getElementById("top");
+        const incident = document.getElementById("incident");
+        const abouts = document.getElementById("abouts");
+        const faq = document.getElementById("faq");
+        const contacts = document.getElementById("contacts");
         switch (name) {
         case "about":
-          home.classList.remove("active");
-          home.removeAttribute("style");
+          abouts.classList.add("active")
+          history.push("/");
+          break;
+        case "incident":
+          incident.classList.add("active")
           break;
         case "faq":
-          home.classList.remove("active");
-          home.removeAttribute("style");
+          faq.classList.add("active")
+          history.push("/");
           break;
         case "contact":
-          home.classList.remove("active");
-          home.removeAttribute("style");
+          contacts.classList.add("active")
           break;
         case "home":
           home.classList.add("active");
@@ -57,38 +79,35 @@ const Navbar = (props) => {
     config: config.wobbly
   });
 
-  const scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-
   return (
     <>
       <NavBar style={barAnimation}>
         <FlexContainer>
           <NavLinks style={linkAnimation}>
             <NavLink to="/" id="top" name="home" onClick={scrollToTop} activeStyle={activeStyle}>home</NavLink>
+            <NavLink to="/incident/status" id="incident" name="incident" onClick={scrollToTop} activeStyle={activeStyle}>incident</NavLink>
             <Link
-              activeClass="active"
               to="about"
               name="about"
+              id="abouts"
               spy={true}
               smooth={true}
               offset={-70}
               duration={500}
             >about</Link>
             <Link
-              activeClass="active"
               to="contact"
               name="contact"
+              id="contacts"
               spy={true}
               smooth={true}
               offset={-70}
               duration={500}
             >contact</Link>
             <Link
-              activeClass="active"
               to="faqslist"
               name="faq"
+              id="faq"
               spy={true}
               smooth={true}
               offset={-70}

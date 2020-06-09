@@ -1,11 +1,10 @@
-import React from "react";
+import React  from "react";
 import styled from "styled-components";
 import { useSpring, config } from "react-spring";
 import { Link } from "react-router-dom";
 import { FaAngleDoubleRight } from "react-icons/fa";
 import ReportModal from "../ReportModal";
-// import "./App.scss";
-import "../../App.scss";
+import Logo from "../../assets/logo.png"
 
 const Description = () => {
   const homeAnimation = useSpring({
@@ -19,13 +18,14 @@ const Description = () => {
       <div id="describe">
         <div>
           <h1>Helow</h1>
-          <p>In times when you just had or wittness an accident, quick response is needed by emergency services to saves lives. Report an accident using, Helow and emergency services will be with the victims within minutes.</p>
+          <p className="helow">In times when you just had or wittness an accident, quick response is needed by emergency services to saves lives. Report an accident using, Helow and emergency services will be with the victims within minutes.</p>
           <div id="links">
             <ReportModal />
-            <Link to="incident/views">View all Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
+            <Link to="/incident/status">View all Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
           </div>
         </div>
-        <div>
+        <div className="home-page">
+          <img src={Logo} alt="description"/>
         </div>
       </div>
     </Wrapper>
@@ -37,9 +37,13 @@ export default Description;
 const Wrapper = styled.div`
     margin-right: 200px;
     margin-left: 200px;
+    font-size: 16px;
+    text-align: justify;
+    text-justify: inter-word;
     & #describe {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        grid-column-gap: 60px;
     }
     h1 { 
       color: #5f6368; 
@@ -48,7 +52,7 @@ const Wrapper = styled.div`
       line-height: 54px; 
       margin: 0 0 20px;; 
     }
-    p { 
+    .helow { 
       color: #5f6368; 
       font-size: 18px; 
       line-height: 28px; 
@@ -69,9 +73,12 @@ const Wrapper = styled.div`
       color: #fff;
       padding: 20px 25px;
     }
-    #links > a > .icon {
+    #links .icon {
       position: relative;
       top: 2px;
       font-size: 12px;
+    }
+    #describe .home-page img {
+      width: 100%;
     }
 `;

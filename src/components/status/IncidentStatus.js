@@ -13,7 +13,7 @@ const IncidentStatus = ({
     <div className="container">
       <h4><b>{description}</b></h4>
       <p>Reported At: {(new Date(reported_at)).toLocaleString()}</p>
-      <p>Status: { status ? "Open" : "Close"}</p>
+      <p>Status: { status }</p>
       <p>Location: {location.known_name}</p>
     </div>
   </Wrapper>
@@ -22,7 +22,7 @@ const IncidentStatus = ({
 IncidentStatus.propTypes = {
   description: PropTypes.string.isRequired,
   reported_at: PropTypes.string.isRequired,
-  status: PropTypes.bool.isRequired,
+  status: PropTypes.string.isRequired,
   location: PropTypes.object.isRequired
 };
 
@@ -39,9 +39,9 @@ const Wrapper = styled.div`
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   p {
-    font-size: 16px;
+    font-size: .80em;
   }
   h4 {
-    font-size: 20px;
+    font-size: 1.2em;
   }
 `;
