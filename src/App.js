@@ -5,15 +5,17 @@ import Footer from "./components/common/Footer";
 import GlobalStyle from "./styles/Global";
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
+import IncidentStatusList from "./components/status/IncidentStatusList";
 
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./App.scss";
+
 
 const App = () => (
   <BrowserRouter>
     <Header />
     <Switch>
       <Route exact path="/" component={HomePage}/>
+      <Route exact path="/incident/status" component={IncidentStatusList}/>
       <Route component={PageNotFound}/>
     </Switch>
     <Footer />

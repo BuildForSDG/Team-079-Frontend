@@ -11,8 +11,7 @@ const Footer = () => (
         </div>
         <div>
           <p>
-            Donec porttitor molestie consequat. Cras vitae mauris mi. Suspendisse potenti. Cras tempor, eros nec pellentesque finibus, augue quam ornare risus, sit amet sagittis quam est a metus. Etiam suscipit finibus orci eget molestie. Etiam tortor dui, tincidunt nec felis non, pretium pulvinar odio. Donec in lacus purus. Cras justo orci, pellentesque sit amet metus quis, iaculis viverra est. Nullam aliquam nisi ut orci placerat, id porta ipsum congue. Ut et ipsum sapien. Vivamus tincidunt sapien vitae pretium vulputate. Proin mollis sollicitudin mi. Integer sit amet est vitae nunc iaculis faucibus nec sed odio. Nunc viverra ipsum dui, vel faucibus sapien rhoncus at. Pellentesque auctor convallis blandit.
-            Aliquam sit amet neque molestie, gravida nulla a, congue velit. Nunc
+          The rate of mortality arising from road accidents is quite alarming. Our goal is to provide an instant and speedy report/response in accident scenes in order to save as many as possible. This is in line with the SDG goal of preserving the life and health of the people. We intend to achieve this by collaborating with relevant stakeholders and agencies in charge of this in the nation.
           </p>
         </div>
       </div>
@@ -22,10 +21,10 @@ const Footer = () => (
         </div>
         <div>
           <ul>
-            <li>Email: helow@gmail.com</li>
-            <li>Facebook: @helow</li>
-            <li>Twitter: @helow</li>
-            <li>Instagram: @helow</li>
+            <li><b>Email:</b> helow@gmail.com</li>
+            <li><b>Facebook:</b> @helow</li>
+            <li><b>Twitter:</b> @helow</li>
+            <li><b>Instagram:</b> @helow</li>
           </ul>
         </div>
       </div>
@@ -41,6 +40,8 @@ export default Footer;
 const Wrapper = styled.div`
     background: #E8E8E8;
     margin-top: 48px;
+    text-align: justify;
+    text-justify: inter-word;
     & #contact {
         display: grid;
         grid-template-columns: 1fr 1fr;

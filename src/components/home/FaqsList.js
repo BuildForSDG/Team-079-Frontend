@@ -8,8 +8,20 @@ const faqsData = [
     answer: "Frequently Asked Question"
   },
   {
-    question: "What is the best ice cream flavor?",
-    answer: "Coffee with fudge ripple, or homemade strawberry."
+    question: "How do i report an incident?",
+    answer: "Reporting an incident is very easy. You just have to clicked on report an accident button and fill the form."
+  },
+  {
+    question: "How can i become a responder?",
+    answer: "You have to contact us through our contact informations."
+  },
+  {
+    question: "What to do after reporting an incident?",
+    answer: "You can help the victim till our responder get to the scene."
+  },
+  {
+    question: "Can a victim report an incident?",
+    answer: "YES, that will make responding to the accident fast."
   }
 ];
 
@@ -30,7 +42,7 @@ const StyledFaqsList = styled.div`
   margin-right: 200px;
   margin-left: 200px;
   & div#second {
-    margin-top: 150px;
+    margin-top: 30px;
     margin-bottom: 48px;
     padding: 1rem;
   }
