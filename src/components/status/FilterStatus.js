@@ -13,7 +13,7 @@ const FilterStatus = ({ onSubmit = (f) => f }) => {
   return (
     <Form onSubmit={handleSubmit}>
       <Select value={ inputValue.value } onChange={handleChange}>
-        <option selected="selected" disabled="disabled">Status</option>
+        <option defaultValue="Status">Status</option>
         <option value="ALL">All</option>
         <option value="STATUS_PENDING">Pending</option>
         <option value="STATUS_AWAIT">Awaiting Responder</option>

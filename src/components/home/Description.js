@@ -42,11 +42,8 @@ const Wrapper = styled.div`
     @media (max-width: 768px) {
       margin-right: 50px;
       margin-left: 50px;
-      #links > a {
-        font-size: 12px;
-        padding: 15px 20px;
-      }
-      #describe div:first-child() {
+
+      #describe div:first-child {
         margin-bottom: 20px;
       }
     }
@@ -61,8 +58,15 @@ const Wrapper = styled.div`
         @media (max-width: 768px) {
           grid-template-columns: 1fr;
         }
+        @media (max-width: 1024px) {
+          .home-page {
+            margin-top: 40px;
+          }   
+        }
     }
-   
+    #describe div:last-child {
+      margin-top: 10px;
+    }
     h1 { 
       color: #5f6368; 
       font-size: 50px; 
@@ -78,9 +82,8 @@ const Wrapper = styled.div`
     }
     #links {
       display: flex;
+      justify-content: space-between;
     }
-    #links > a:first-child {
-      margin-right: 20px;
     }
     #links > a {
       text-decoration: none;
@@ -89,8 +92,13 @@ const Wrapper = styled.div`
       color: #fff;
       padding: 18px 23px;
       text-align: left;
+      @media (max-width: 768px) {
+          font-size: 12px;
+          padding: 15px 20px;
+      }
       @media (max-width: 1024px) {
-          font-size: 14px;       
+          font-size: 16px; 
+          padding: 15px 20px;    
         }
       }
     }
