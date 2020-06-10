@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import React  from "react";
+=======
+/* eslint-disable max-len */
+import React from "react";
+>>>>>>> Change functionality
 import styled from "styled-components";
 import { useSpring, config } from "react-spring";
 import { Link } from "react-router-dom";

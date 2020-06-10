@@ -23,8 +23,8 @@ const ReportModal = () => {
   const [modal, setModal] = useState(false);
 
   const [submitted, setSubmitted] = useState(false);
-  const [trackingID, setTrackingID] = useState(null);
 
+  const [responders, setResponders] = useState([]);
   const abuja = { lat: 9.0764785, lng: 7.398574 };
 
   const [address, setAddress] = useState("");
@@ -66,15 +66,16 @@ const ReportModal = () => {
         map_name: address,
         known_name: report.location,
         location_lat: coordinates.lat,
-        location_lng: coordinates.lng
-      },
-      reported_by: {
-        id: 3
+        location_lng: coordinates.lng,
+        viewport_ne_lat: coordinates.lat,
+        viewport_ne_lng: coordinates.lng,
+        viewport_sw_lat: coordinates.lat,
+        viewport_sw_lng: coordinates.lng,
+        rating: 5,
+        vicinity: "Liberty Park"
       },
       reported_at: report.reported_at,
-      incident_type: {
-        id: +report.incident_type
-      }
+      incident_type: +report.incident_type
     };
 
     const config = {
@@ -84,8 +85,8 @@ const ReportModal = () => {
     };
 
     try {
-      const res = await axios.post(`${baseURL}api/v1/incident/report/`, obj, config);
-      setTrackingID(res.data.id);
+      const res = await axios.post(`${baseURL}api/v1/incident/report/create/`, obj, config);
+      setResponders(res.data);
       setSubmitted(true);
     } catch (error) {
       // eslint-disable-next-line no-console
@@ -113,10 +114,13 @@ const ReportModal = () => {
     }));
   };
 
+  const selectResonder = () => {
+    setModal((modalState) => !modalState);
+  };
+
   return (
     <>
-      <Link onClick={toggle}>Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
-      {/* <Button color="primary" onClick={toggle}>Report Accident</Button> */}
+      <Link to='' onClick={toggle}>Report an Accident <span className="icon"><FaAngleDoubleRight /></span></Link>
       <Modal toggle={toggle} isOpen={modal}>
         {!submitted ? (<><ModalHeader toggle={toggle}>Report Accident</ModalHeader>
         <ModalBody>
@@ -195,14 +199,19 @@ const ReportModal = () => {
         </ModalBody></>) : (<>
           <ModalHeader toggle={toggle}>Report Submitted</ModalHeader>
           <ModalBody style={{ textAlign: "center" }}>
-        <h6>Please track this incident with this ID: {trackingID}</h6>
-            <br/>
+        {responders.length ? (<div className="row">
+          {responders.map((responder) => (<div key={responder.id} className="col-sm-6 mb-3"><div>{responder.name}</div><div>{responder.vicinity}</div><Button onClick={selectResonder} color='primary'>Select</Button></div>))}
+        </div>) : (
+          <>
+          <h6>No responders within this vicinity</h6>
           <Button onClick={() => {
             setModal((modalState) => !modalState);
-            // setSubmitted(false);
           }} color="primary">
                 Close
               </Button>
+              </>
+        )}
+            <br/>
           </ModalBody>
         </>)}
       </Modal>
