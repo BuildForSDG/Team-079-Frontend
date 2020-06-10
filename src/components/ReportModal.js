@@ -28,6 +28,7 @@ const ReportModal = () => {
   const abuja = { lat: 9.0764785, lng: 7.398574 };
 
   const [address, setAddress] = useState("");
+
   const [coordinates, setCoordinates] = useState(abuja);
 
   const [report, setReport] = useState({
@@ -72,7 +73,7 @@ const ReportModal = () => {
         viewport_sw_lat: coordinates.lat,
         viewport_sw_lng: coordinates.lng,
         rating: 5,
-        vicinity: "Liberty Park"
+        vicinity: address
       },
       reported_at: report.reported_at,
       incident_type: +report.incident_type
@@ -114,7 +115,15 @@ const ReportModal = () => {
     }));
   };
 
-  const selectResonder = () => {
+  const selectResonder = async (placeId, incidentId) => {
+    try {
+      const res = await axios(`${baseURL}api/v1/responder/assign/${incidentId}?place_id=${placeId}`);
+      // eslint-disable-next-line no-alert
+      alert(`${res.data.message}\nA responder has been successfully assigned`);
+    } catch (error) {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
     setModal((modalState) => !modalState);
   };
 
@@ -197,10 +206,10 @@ const ReportModal = () => {
             </FormGroup>
           </Form>
         </ModalBody></>) : (<>
-          <ModalHeader toggle={toggle}>Report Submitted</ModalHeader>
+          <ModalHeader toggle={toggle}>{responders.length && "Report Submitted"}</ModalHeader>
           <ModalBody style={{ textAlign: "center" }}>
         {responders.length ? (<div className="row">
-          {responders.map((responder) => (<div key={responder.id} className="col-sm-6 mb-3"><div>{responder.name}</div><div>{responder.vicinity}</div><Button onClick={selectResonder} color='primary'>Select</Button></div>))}
+          {responders.map((responder) => (<div key={responder.id} className="col-sm-6 mb-3"><div>{responder.name}</div><div>{responder.vicinity}</div><Button onClick={selectResonder.bind(this, responder.place_id, responder.incident_id)} color='primary'>Select</Button></div>))}
         </div>) : (
           <>
           <h6>No responders within this vicinity</h6>
