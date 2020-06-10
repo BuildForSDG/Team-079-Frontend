@@ -6,7 +6,7 @@ import GlobalStyle from "./styles/Global";
 import HomePage from "./pages/HomePage";
 import PageNotFound from "./pages/PageNotFound";
 import IncidentStatusList from "./components/status/IncidentStatusList";
-
+import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 

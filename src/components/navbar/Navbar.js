@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useSpring, animated, config } from "react-spring";
-import { NavLink, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import { Link, animateScroll as scroll } from "react-scroll";
 
@@ -22,14 +22,14 @@ const Navbar = (props) => {
     const removeClass = () => {
       // eslint-disable-next-line
       arrLinks.map((element) => {
-        element.classList.remove("active")
-        element.removeAttribute("style")
+        element.classList.remove("active");
+        element.removeAttribute("style");
       });
-    }
+    };
     removeClass();
     arrLinks.forEach((link) => {
       link.addEventListener("click", ({ target }) => {
-        removeClass()
+        removeClass();
         const { name } = target;
         const home = document.getElementById("top");
         const incident = document.getElementById("incident");
@@ -38,34 +38,29 @@ const Navbar = (props) => {
         const contacts = document.getElementById("contacts");
         switch (name) {
         case "about":
-          abouts.classList.add("active")
+          abouts.classList.add("active");
           history.push("/");
           break;
         case "incident":
-          incident.classList.add("active")
+          incident.classList.add("active");
+          history.push("/incident/status")
           break;
         case "faq":
-          faq.classList.add("active")
+          faq.classList.add("active");
           history.push("/");
           break;
         case "contact":
-          contacts.classList.add("active")
+          contacts.classList.add("active");
           break;
         case "home":
           home.classList.add("active");
+          history.push("/");
           break;
         default:
         }
       });
     });
   });
-
-  const activeStyle = {
-    color: "#349eeb",
-    marginBottom: "0",
-    borderBottom: "2px solid #349eeb",
-    paddingBottom: "16px"
-  };
 
   const barAnimation = useSpring({
     from: { transform: "translate3d(0, -10rem, 0)" },
@@ -84,8 +79,26 @@ const Navbar = (props) => {
       <NavBar style={barAnimation}>
         <FlexContainer>
           <NavLinks style={linkAnimation}>
-            <NavLink to="/" id="top" name="home" onClick={scrollToTop} activeStyle={activeStyle}>home</NavLink>
-            <NavLink to="/incident/status" id="incident" name="incident" onClick={scrollToTop} activeStyle={activeStyle}>incident</NavLink>
+            <Link
+              activeClass="active"
+              onClick={scrollToTop}
+              name="home"
+              id="top"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >home</Link>
+            <Link
+              activeClass="active"
+              onClick={scrollToTop}
+              name="incident"
+              id="incident"
+              spy={true}
+              smooth={true}
+              offset={-70}
+              duration={500}
+            >incident</Link>
             <Link
               to="about"
               name="about"
