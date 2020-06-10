@@ -25,6 +25,6 @@ yarn-error.log*
 reflections.txt
 reflections.js
 
-.firebase
-.firebaserc
 firebase.json
+.firebaserc
+.firebase
