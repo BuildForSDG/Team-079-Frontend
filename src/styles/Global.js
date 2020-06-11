@@ -24,5 +24,4 @@ const GlobalStyles = createGlobalStyle`
     margin-top: 80px;
   }
 `;
-
 export default GlobalStyles;

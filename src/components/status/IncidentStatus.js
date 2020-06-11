@@ -4,23 +4,23 @@ import PropTypes from "prop-types";
 
 
 const IncidentStatus = ({
-  description,
+  title,
   reported_at,
   status,
   location
 }) => (
   <Wrapper>
     <div className="container">
-      <h4><b>{description}</b></h4>
+      <h4><b>{title}</b></h4>
       <p>Reported At: {(new Date(reported_at)).toLocaleString()}</p>
       <p>Status: { status }</p>
-      <p>Location: {location.known_name}</p>
+      <p>Location: {location.formatted_address}</p>
     </div>
   </Wrapper>
 );
 
 IncidentStatus.propTypes = {
-  description: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   reported_at: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   location: PropTypes.object.isRequired

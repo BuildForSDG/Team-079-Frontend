@@ -39,8 +39,16 @@ const FaqsList = () => (
 export default FaqsList;
 
 const StyledFaqsList = styled.div`
-  margin-right: 200px;
-  margin-left: 200px;
+  margin-right: 180px;
+  margin-left: 180px;
+  @media (max-width: 768px) {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
+  @media (max-width: 1024px) {
+    margin-right: 50px;
+    margin-left: 50px;
+  }
   & div#second {
     margin-top: 30px;
     margin-bottom: 48px;
