@@ -35,15 +35,37 @@ const Description = () => {
 export default Description;
 
 const Wrapper = styled.div`
-    margin-right: 200px;
-    margin-left: 200px;
-    font-size: 16px;
+    margin-right: 180px;
+    margin-left: 180px;
     text-align: justify;
     text-justify: inter-word;
+    @media (max-width: 768px) {
+      margin-right: 50px;
+      margin-left: 50px;
+
+      #describe div:first-child {
+        margin-bottom: 20px;
+      }
+    }
+    @media (max-width: 1024px) {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
     & #describe {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-column-gap: 60px;
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+        }
+        @media (max-width: 1024px) {
+          .home-page {
+            margin-top: 40px;
+          }   
+        }
+    }
+    #describe div:last-child {
+      margin-top: 10px;
     }
     h1 { 
       color: #5f6368; 
@@ -61,20 +83,26 @@ const Wrapper = styled.div`
     #links {
       display: flex;
       justify-content: space-between;
-      position: absolute;
     }
-    #links > a:first-child {
-      margin-right: 34px;
     }
     #links > a {
       text-decoration: none;
       background: #584bbf;
       font-size: 16px;
       color: #fff;
-      padding: 20px 25px;
+      padding: 18px 23px;
+      text-align: left;
+      @media (max-width: 768px) {
+          font-size: 12px;
+          padding: 15px 20px;
+      }
+      @media (max-width: 1024px) {
+          font-size: 16px; 
+          padding: 15px 20px;    
+        }
+      }
     }
     #links .icon {
-      position: relative;
       top: 2px;
       font-size: 12px;
     }

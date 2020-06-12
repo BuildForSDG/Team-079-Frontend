@@ -20,10 +20,18 @@ const About = () => (
 export default About;
 
 const Wrapper = styled.div`
-    margin-right: 200px;
-    margin-left: 200px;
+    margin-right: 180px;
+    margin-left: 180px;
     text-align: justify;
     text-justify: inter-word;
+    @media (max-width: 768px) {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
+    @media (max-width: 1024px) {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
     & div > h3 {
         text-align: center;
         font-size: 48px;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Pagination from "react-js-pagination";
 import IncidentStatus from "./IncidentStatus";
 import FilterStatus from "./FilterStatus";
+import Loader from '../common/Loader';
 
 const IncidentStatusList = () => {
   const baseURL = "https://helow.herokuapp.com/";
@@ -57,7 +58,7 @@ const IncidentStatusList = () => {
 
   return (
     <Wrapper>
-      { loading ? <h1>Loading.......</h1>
+      { loading ? <Loader />
         : <>
           <FilterStatus onSubmit={ handleSubmit }/>
           <div className="card-list">
@@ -82,14 +83,25 @@ const IncidentStatusList = () => {
 export default IncidentStatusList;
 
 const Wrapper = styled.div`
-    margin-right: 200px;
-    margin-left: 200px;
+    margin-right: 180px;
+    margin-left: 180px;
     font-size: 18px;
+    @media (max-width: 768px) {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
+    @media (max-width: 1024px) {
+      margin-right: 50px;
+      margin-left: 50px;
+    }
     & .card-list {
       display: grid;
       grid-template-columns: 1fr 1fr;
       grid-gap: 15px;
       margin-bottom: 20px;
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
     }
     & .page-item {
       font-size: 16px !important;
