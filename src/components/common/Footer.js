@@ -42,6 +42,7 @@ const Wrapper = styled.div`
     margin-top: 48px;
     text-align: justify;
     text-justify: inter-word;
+    color: #5f6368;
     & #contact {
         display: grid;
         grid-template-columns: 1fr 1fr;
