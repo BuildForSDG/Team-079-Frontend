@@ -40,6 +40,9 @@ export default Faq;
 
 const StyledFaq = styled.div`
   cursor: pointer;
+  & h4 {
+    color: #5f6368;
+  }
   h4.faq-question {
     display: flex;
     justify-content: space-between;
