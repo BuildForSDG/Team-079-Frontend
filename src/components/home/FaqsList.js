@@ -56,6 +56,7 @@ const StyledFaqsList = styled.div`
   }
   & h2 {
     text-align: center;
+    color: #5f6368;
     font-size: 48px;
     font-style: normal;
     line-height: 1.2;

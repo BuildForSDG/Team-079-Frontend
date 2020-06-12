@@ -34,6 +34,7 @@ const Wrapper = styled.div`
     }
     & div > h3 {
         text-align: center;
+        color: #5f6368;
         font-size: 48px;
         font-style: normal;
         font-weight: 300;

@@ -1,20 +1,21 @@
 import React from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
+import { FaMapMarkerAlt, FaClock, FaRegCheckCircle } from "react-icons/fa";
 
 
 const IncidentStatus = ({
   title,
   reported_at,
   status,
-  location
+  location 
 }) => (
   <Wrapper>
     <div className="container">
       <h4><b>{title}</b></h4>
-      <p>Reported At: {(new Date(reported_at)).toLocaleString()}</p>
-      <p>Status: { status }</p>
-      <p>Location: {location.formatted_address}</p>
+      <p><span><FaClock /></span> {(new Date(reported_at)).toLocaleString()}</p>
+      <p><span><FaRegCheckCircle /></span> { status }</p>
+      <p><span><FaMapMarkerAlt /></span> {location.map_name}</p>
     </div>
   </Wrapper>
 );
@@ -33,15 +34,21 @@ const Wrapper = styled.div`
   transition: 0.3s;
   border-radius: 5px;
   & .container {
-    padding: 10px 16px;
+    padding: 10px 16px; 
+    & span{
+      font-size: 16px;
+      margin-right: 5px;
+    }
   }
   &:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
   p {
     font-size: .80em;
+    color: #5f6368;
   }
   h4 {
-    font-size: 1.2em;
+    font-size: 1.5em;
+    color: #5f6368;
   }
 `;
