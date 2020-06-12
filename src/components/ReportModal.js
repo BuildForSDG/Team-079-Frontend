@@ -25,11 +25,14 @@ const ReportModal = () => {
   const [submitted, setSubmitted] = useState(false);
 
   const [responders, setResponders] = useState([]);
+
   const abuja = { lat: 9.0764785, lng: 7.398574 };
 
   const [address, setAddress] = useState("");
 
   const [coordinates, setCoordinates] = useState(abuja);
+
+  const [responderSelected, setResponderSelected] = useState(false);
 
   const [report, setReport] = useState({
     title: "",
@@ -117,14 +120,13 @@ const ReportModal = () => {
 
   const selectResonder = async (placeId, incidentId) => {
     try {
+      // eslint-disable-next-line no-unused-vars
       const res = await axios(`${baseURL}api/v1/responder/assign/${incidentId}?place_id=${placeId}`);
-      // eslint-disable-next-line no-alert
-      alert(`${res.data.message}\nA responder has been successfully assigned`);
+      setResponderSelected(true);
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error(error);
     }
-    setModal((modalState) => !modalState);
   };
 
   return (
@@ -208,9 +210,16 @@ const ReportModal = () => {
         </ModalBody></>) : (<>
           <ModalHeader toggle={toggle}>{responders.length && "Report Submitted"}</ModalHeader>
           <ModalBody style={{ textAlign: "center" }}>
-        {responders.length ? (<div className="row">
+        {responders.length ? (<>{!responderSelected ? (<div className="row">
           {responders.map((responder) => (<div key={responder.id} className="col-sm-6 mb-3"><div>{responder.name}</div><div>{responder.vicinity}</div><Button onClick={selectResonder.bind(this, responder.place_id, responder.incident_id)} color='primary'>Select</Button></div>))}
-        </div>) : (
+        </div>) : (<div>
+          <h5>A responder has been successfully assigned</h5>
+          <Button onClick={() => {
+            setModal((modalState) => !modalState);
+          }} color="primary">
+                Close
+              </Button>
+          </div>)}</>) : (
           <>
           <h6>No responders within this vicinity</h6>
           <Button onClick={() => {
